@@ -1,0 +1,50 @@
+{
+  "name": "minder-shooter",
+  "version": "1.0.0",
+  "description": "Phaser 3 Template",
+  "homepage": "https://mangito.github.io/",
+  "private": false,
+  "author": {
+    "name": "Flávio Silva",
+    "email": "flavioandre.2001.9.7@gmail.com",
+    "url": "https://201flaviosilva.github.io/"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "clear": "rm -rf build && rm -rf out && rm -rf dist",
+    "start": "webpack-dev-server --config webpack/base.js --open",
+    "build": "webpack --config webpack/prod.js ",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "phaser": "^3.*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "file-loader": "^4.3.0",
+    "gh-pages": "^3.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "raw-loader": "^3.1.0",
+    "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^4.2.2",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^4.2.2"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+"
+  },
+  "bugs": {
+    "url": "h"
+  }
+}

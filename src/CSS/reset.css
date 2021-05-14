@@ -1,0 +1,42 @@
+@font-face {
+  font-family: "Press Start 2P";
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Press Start 2P", "Courier New", Courier, monospace;
+  color: black;
+}
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: black;
+}
+
+div.Demo,
+p {
+  z-index: 1;
+  margin: 1px;
+  padding: 2px 4px;
+  position: fixed;
+  top: 0;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+}
+
+div.Demo {
+  left: 0;
+}
+
+canvas {
+  border: 1px solid white;
+  box-shadow: 0 0 20px white;
+}
