@@ -42,9 +42,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+"
+    "url": "git+https://github.com/201flaviosilva/Minder-Shooter"
   },
   "bugs": {
-    "url": "h"
+    "url": "https://github.com/201flaviosilva/Minder-Shooter/issues"
   }
 }

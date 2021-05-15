@@ -13,9 +13,9 @@ export default class Home extends Phaser.Scene {
 		const playersGroup = this.physics.add.group({
 			classType: Player,
 			collideWorldBounds: true,
-			runChildUpdate: true
+			runChildUpdate: true,
 		});
 
-		playersGroup.get(middleWidth, middleHeight);
+		this.player = playersGroup.get(middleWidth, middleHeight);
 	}
 }

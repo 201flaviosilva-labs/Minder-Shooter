@@ -8,10 +8,11 @@ const GlobalConfigs = {
 	debug: false,
 	language: "en",
 	controllers: {
-		left: "LEFT",
-		right: "RIGHT",
-		up: "UP",
-		down: "DOWN",
+		left: "A",
+		right: "D",
+		up: "W",
+		down: "S",
+		shoot: "SPACE",
 	},
 };
 
