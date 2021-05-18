@@ -18,5 +18,12 @@ export const TextStyle = {
 		fill: "#fff",
 		stroke: "#000",
 		strokeThickness: 2,
+	},
+	home: {
+		fontFamily: PressStart2P,
+		fontSize: 50,
+		fill: "#000",
+		stroke: "#fff",
+		strokeThickness: 2,
 	}
 };

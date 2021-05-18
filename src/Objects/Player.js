@@ -1,11 +1,17 @@
 import Configs from "../Config/Configs";
 import Bullet from "./Bullet";
 
+const SCENE_WIDTH = Configs.world.width;
+const SCENE_HEIGHT = Configs.world.height;
+
 export default class Player extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y) {
 		super(scene, x, y, "Minder");
 
-		this.init();
+		// Set variables
+		this.speed = 200;
+		this.nextTimeFired = 0;
+		this.time = 0;
 
 		const controllers = Configs.controllers;
 		this.keys = this.scene.input.keyboard.addKeys({
@@ -18,25 +24,31 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 		this.shoots = this.scene.physics.add.group({
 			classType: Bullet,
-			// maxSize: 2,
 			runChildUpdate: true,
 		});
 
 
 		this.scene.input.on("pointermove", this.checkAngle, this);
-	}
-
-	init() {
-		this.speed = 200;
-		this.nextTimeFired = 0;
+		this.scene.input.on("pointerdown", this.shoot, this);
 	}
 
 	checkAngle(pointer) {
-		const angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.x, this.y, pointer.x, pointer.y);
+		const angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.x, this.y, pointer.worldX, pointer.worldY);
 		this.setAngle(angle);
 	}
 
-	update() {
+	generate() {
+		// Player Bounds
+		const bounds = new Phaser.Geom.Rectangle(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
+		this.body.setBoundsRectangle(bounds);
+
+		// Set camera follow player
+		this.scene.cameras.main.setBounds(0, 0, SCENE_WIDTH, SCENE_HEIGHT, this);
+		this.scene.cameras.main.startFollow(this, false, 0.1, 0.1);
+	}
+
+	update(time) {
+		this.time = time;
 		const keys = this.keys;
 
 		// X
@@ -50,10 +62,11 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		else this.setVelocityY(0);
 
 		// Shoot
-		if (keys.shoot.isDown) this.shoot();
+		if (keys.shoot.isDown && this.nextTimeFired < this.time) this.shoot();
 	}
 
 	shoot() {
+		this.nextTimeFired = this.time + 100;
 		const shoot = this.shoots.get();
 		if (shoot) {
 			shoot.fire(this.x, this.y, this.rotation);

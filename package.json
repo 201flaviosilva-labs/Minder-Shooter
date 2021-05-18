@@ -15,7 +15,7 @@
     "start": "webpack-dev-server --config webpack/base.js --open",
     "build": "webpack --config webpack/prod.js ",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist && npm run clear"
   },
   "dependencies": {
     "phaser": "^3.*"

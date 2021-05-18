@@ -19,12 +19,15 @@ export default class Bullet extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	update(time, delta) {
+		this.time++;
+		if (this.time > 250) this.destroy();
+
 		if (!this.direction) return;
 
-		this.time++;
 		this.x += Math.cos(this.direction) * this.speed * delta;
 		this.y += Math.sin(this.direction) * this.speed * delta;
 
-		if (this.time > 150) this.destroy();
+
+		if (this.time > 150) this.setAlpha(this.alpha - 0.01);
 	}
 }
