@@ -11,7 +11,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		// Set variables
 		this.speed = 200;
 		this.nextTimeFired = 0;
-		this.time = 0;
 
 		const controllers = Configs.controllers;
 		this.keys = this.scene.input.keyboard.addKeys({
@@ -27,14 +26,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			runChildUpdate: true,
 		});
 
-
-		this.scene.input.on("pointermove", this.checkAngle, this);
-		this.scene.input.on("pointerdown", this.shoot, this);
-	}
-
-	checkAngle(pointer) {
-		const angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.x, this.y, pointer.worldX, pointer.worldY);
-		this.setAngle(angle);
+		// Pointer
+		this.pointer = this.scene.input.activePointer;
 	}
 
 	generate() {
@@ -48,8 +41,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	update(time) {
-		this.time = time;
 		const keys = this.keys;
+
+		// Angle
+		this.checkAngle();
 
 		// X
 		if (keys.left.isDown) this.setVelocityX(-this.speed);
@@ -62,11 +57,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		else this.setVelocityY(0);
 
 		// Shoot
-		if (keys.shoot.isDown && this.nextTimeFired < this.time) this.shoot();
+		if ((keys.shoot.isDown || this.pointer.isDown) && this.nextTimeFired < time) this.shoot(time);
 	}
 
-	shoot() {
-		this.nextTimeFired = this.time + 100;
+	checkAngle() {
+		const angle = Phaser.Math.RAD_TO_DEG * Phaser.Math.Angle.Between(this.x, this.y, this.pointer.worldX, this.pointer.worldY);
+		this.setAngle(angle);
+	}
+
+	shoot(time) {
+		this.nextTimeFired = time + 100;
 		const shoot = this.shoots.get();
 		if (shoot) {
 			shoot.fire(this.x, this.y, this.rotation);
