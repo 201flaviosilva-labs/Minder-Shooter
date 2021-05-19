@@ -31,6 +31,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	generate() {
+
+		this.setDepth(10);
 		// Player Bounds
 		const bounds = new Phaser.Geom.Rectangle(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
 		this.body.setBoundsRectangle(bounds);

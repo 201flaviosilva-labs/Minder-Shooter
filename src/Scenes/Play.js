@@ -15,16 +15,7 @@ export default class Play extends Phaser.Scene {
 	create() {
 		const { width, height, middleWidth, middleHeight } = Configs.screen;
 
-		{ // Debug
-			const graphics = this.add.graphics().setDepth(0);
-			graphics.lineStyle(1, 0xff0000, 1);
-			const xSpace = 250;
-			for (let i = 0; i < SCENE_WIDTH / xSpace; i++) {
-				const x = i * xSpace;
-				graphics.lineBetween(x, 0, x, SCENE_HEIGHT);
-				this.add.text(x, 10, x);
-			}
-		}
+		if (Configs.debug) this.drawDebugGraphics();
 
 		const background = new Background(this);
 
@@ -68,11 +59,29 @@ export default class Play extends Phaser.Scene {
 		e.destroy();
 	}
 
+	drawDebugGraphics() {
+		const graphics = this.add.graphics().setDepth(0);
+		graphics.lineStyle(1, 0xff0000, 1);
+		const xSpace = 250;
+		for (let i = 0; i < SCENE_WIDTH / xSpace; i++) {
+			const x = i * xSpace;
+			graphics.lineBetween(x, 0, x, SCENE_HEIGHT);
+			this.add.text(x, 10, x);
+		}
+	}
+
 	update() {
 		Phaser.Utils.Array.Each(
 			this.enemiesGroup.getChildren(),
 			this.physics.moveToObject,
 			this.physics,
 			this.player, 120);
+
+		const enemies = this.enemiesGroup.getChildren();
+		for (let i = 0; i < enemies.length; i++) {
+			const enemy = enemies[i];
+			const angle = Phaser.Math.Angle.Between(this.player.x, this.player.y, enemy.x, enemy.y);
+			enemy.setRotation(angle);
+		}
 	}
 }
