@@ -55,8 +55,9 @@ export default class Play extends Phaser.Scene {
 	}
 
 	shootsEnemy(s, e) {
+		if (!e.alive) return;
 		s.destroy();
-		e.destroy();
+		e.kill();
 	}
 
 	drawDebugGraphics() {
@@ -71,17 +72,14 @@ export default class Play extends Phaser.Scene {
 	}
 
 	update() {
-		Phaser.Utils.Array.Each(
-			this.enemiesGroup.getChildren(),
-			this.physics.moveToObject,
-			this.physics,
-			this.player, 120);
-
 		const enemies = this.enemiesGroup.getChildren();
 		for (let i = 0; i < enemies.length; i++) {
 			const enemy = enemies[i];
-			const angle = Phaser.Math.Angle.Between(this.player.x, this.player.y, enemy.x, enemy.y);
-			enemy.setRotation(angle);
+			if (enemy.alive) {
+				this.physics.moveToObject(enemy, this.player, enemy.speed);
+				const angle = Phaser.Math.Angle.Between(this.player.x, this.player.y, enemy.x, enemy.y);
+				enemy.setRotation(angle);
+			}
 		}
 	}
 }

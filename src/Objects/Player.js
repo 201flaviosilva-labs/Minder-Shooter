@@ -12,6 +12,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.speed = 200;
 		this.nextTimeFired = 0;
 
+		// Controllers
 		const controllers = Configs.controllers;
 		this.keys = this.scene.input.keyboard.addKeys({
 			left: controllers.left,
@@ -21,9 +22,22 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			shoot: controllers.shoot,
 		});
 
+		// Shoots
 		this.shoots = this.scene.physics.add.group({
 			classType: Bullet,
 			runChildUpdate: true,
+		});
+
+		// Particles
+		this.particles = this.scene.add.particles("Minder").createEmitter({
+			lifespan: 750,
+			delay: 100,
+			scale: { start: 0.2, end: 0 },
+			alpha: { start: 0.5, end: 0 },
+			speed: { min: 50, max: 150 },
+			rotate: { onEmit: () => this.angle },
+			follow: this,
+			on: false,
 		});
 
 		// Pointer
@@ -31,7 +45,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	generate() {
-
 		this.setDepth(10);
 		// Player Bounds
 		const bounds = new Phaser.Geom.Rectangle(0, 0, SCENE_WIDTH, SCENE_HEIGHT);
@@ -57,6 +70,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		if (keys.up.isDown) this.setVelocityY(-this.speed);
 		else if (keys.down.isDown) this.setVelocityY(this.speed);
 		else this.setVelocityY(0);
+
+		if (this.body.velocity.x || this.body.velocity.y) this.particles.on = true;
+		else this.particles.on = false;
 
 		// Shoot
 		if ((keys.shoot.isDown || this.pointer.isDown) && this.nextTimeFired < time) this.shoot(time);
