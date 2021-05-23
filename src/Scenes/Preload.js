@@ -17,14 +17,14 @@ export default class Preload extends Phaser.Scene {
 		this.importSprites();
 		this.importSounds();
 
-		this.load.on('progress', (p) => progressBar.updateBar(p));
+		this.load.on("progress", (p) => progressBar.updateBar(p));
 		this.load.on("fileprogress", (f) => progressBar.fileLoad(f));
 
-		this.load.on('complete', () => {
+		this.load.on("complete", () => {
 			progressBar.complete();
 
-			// this.scene.start("Home");
-			this.scene.start("Play");
+			this.scene.start("Home");
+			// this.scene.start("Play");
 		});
 	}
 
