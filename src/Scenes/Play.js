@@ -58,7 +58,7 @@ export default class Play extends Phaser.Scene {
 
 	shootsEnemy(s, e) {
 		if (!e.alive) return;
-		s.destroy();
+		s.kill();
 		e.kill();
 	}
 

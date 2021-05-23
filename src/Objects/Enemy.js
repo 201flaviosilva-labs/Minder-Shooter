@@ -44,7 +44,10 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 			duration: 1000,
 			ease: "Linear",
 			alpha: { from: 1, to: 0.05 },
-			onComplete: () => { this.destroy(); },
+			onComplete: () => {
+				this.particles.remove();
+				this.destroy();
+			},
 		});
 
 		this.alive = false;
