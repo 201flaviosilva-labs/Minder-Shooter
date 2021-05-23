@@ -85,7 +85,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 	shoot(time) {
 		this.nextTimeFired = time + 100;
-		const shoot = this.shoots.get();
+		const shoot = this.shoots.get(this.x, this.y, "Minder");
 		if (shoot) {
 			shoot.fire(this.x, this.y, this.rotation);
 		}

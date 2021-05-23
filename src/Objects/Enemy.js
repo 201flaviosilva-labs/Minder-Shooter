@@ -9,6 +9,17 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 
 		this.speed = 100;
 		this.alive = true;
+
+		// Particles
+		this.particles = this.scene.add.particles("Duke").createEmitter({
+			lifespan: 1000,
+			delay: 100,
+			scale: { start: 0.2, end: 0 },
+			alpha: { start: 0.5, end: 0 },
+			speed: 50,
+			rotate: { onEmit: () => this.angle },
+			follow: this,
+		});
 	}
 
 	generate() {
@@ -36,8 +47,11 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 			onComplete: () => { this.destroy(); },
 		});
 
+		this.alive = false;
+
 		this.setVelocity(0);
 		this.speed = 0;
-		this.alive = false;
+
+		this.particles.stop();
 	}
 }

@@ -51,7 +51,9 @@ export default class Play extends Phaser.Scene {
 
 		// Collision
 		this.physics.add.overlap(this.player.shoots, this.enemiesGroup, this.shootsEnemy, null, this);
-		this.physics.add.overlap(this.player, this.enemiesGroup, () => { this.scene.start("Home") }, null, this);
+		this.physics.add.overlap(this.player, this.enemiesGroup, (p, e) => {
+			if (e.alive) this.scene.start("Home");
+		}, null, this);
 	}
 
 	shootsEnemy(s, e) {
