@@ -1,4 +1,5 @@
 import Configs from "../Config/Configs";
+import Bullet from "./Bullet";
 
 const SCENE_WIDTH = Configs.world.width;
 const SCENE_HEIGHT = Configs.world.height;
@@ -9,6 +10,19 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 
 		this.speed = 100;
 		this.alive = true;
+
+		// Shoots
+		this.shoots = this.scene.physics.add.group({
+			classType: Bullet,
+			runChildUpdate: true,
+		});
+
+		this.shootTimer = this.scene.time.addEvent({
+			delay: Phaser.Math.Between(2500, 20000),
+			callback: this.shoot,
+			callbackScope: this,
+			loop: true,
+		});
 
 		// Particles
 		this.particles = this.scene.add.particles("Duke").createEmitter({
@@ -32,8 +46,16 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 		this.setRandomPosition(margin, margin, SCENE_WIDTH - margin, SCENE_HEIGHT - margin);
 
 		// Angle
-		const angle = Phaser.Math.Angle.Between(this.scene.player.x, this.scene.player.y, this.x, this.y);
+		const angle = Phaser.Math.Angle.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) - Phaser.Math.DegToRad(180);
 		this.setRotation(angle);
+	}
+
+	shoot() {
+		if (!this.alive) return;
+		const shoot = this.shoots.get(this.x, this.y, "Duke");
+		if (shoot) {
+			shoot.fire(this.x, this.y, this.rotation);
+		}
 	}
 
 	kill() {
@@ -51,6 +73,12 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 		});
 
 		this.alive = false;
+
+		this.shootTimer.paused = true;
+		this.shootTimer.remove();
+
+		this.shoots.setActive(false);
+		this.shoots.destroy(true);
 
 		this.setVelocity(0);
 		this.speed = 0;

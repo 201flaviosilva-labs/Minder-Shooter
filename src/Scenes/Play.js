@@ -79,7 +79,7 @@ export default class Play extends Phaser.Scene {
 			const enemy = enemies[i];
 			if (enemy.alive) {
 				this.physics.moveToObject(enemy, this.player, enemy.speed);
-				const angle = Phaser.Math.Angle.Between(this.player.x, this.player.y, enemy.x, enemy.y);
+				const angle = Phaser.Math.Angle.Between(this.player.x, this.player.y, enemy.x, enemy.y) - Phaser.Math.DegToRad(180);
 				enemy.setRotation(angle);
 			}
 		}
