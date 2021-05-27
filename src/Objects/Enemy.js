@@ -9,7 +9,9 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 		super(scene, x, y, "Duke");
 
 		this.speed = 100;
-		this.alive = true;
+		this.alive = false;
+
+		this.setAlpha(0);
 
 		// Shoots
 		this.shoots = this.scene.physics.add.group({
@@ -46,6 +48,23 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 		this.setRandomPosition(margin, margin, SCENE_WIDTH - margin, SCENE_HEIGHT - margin);
 
 		// Angle
+		this.fixRotation();
+
+		this.scene.tweens.add({
+			targets: [this],
+			duration: 1500,
+			delay: 250,
+			ease: "Cubic.easeIn",
+			alpha: { from: 0, to: 1 },
+			scale: { from: 0, to: 1 },
+			onUpdate: () => this.fixRotation(),
+			onComplete: () => {
+				this.alive = true;
+			},
+		});
+	}
+
+	fixRotation() {
 		const angle = Phaser.Math.Angle.Between(this.scene.player.x, this.scene.player.y, this.x, this.y) - Phaser.Math.DegToRad(180);
 		this.setRotation(angle);
 	}
@@ -65,7 +84,8 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 			targets: [this],
 			duration: 1000,
 			ease: "Linear",
-			alpha: { from: 1, to: 0.05 },
+			alpha: { from: 1, to: 0 },
+			scale: { from: 1, to: 0 },
 			onComplete: () => {
 				this.particles.remove();
 				this.destroy();
