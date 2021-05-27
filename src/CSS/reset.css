@@ -23,4 +23,5 @@ body {
 canvas {
   border: 1px solid #ffd100;
   box-shadow: 0 0 20px #ffd100;
+  border-radius: 4px;
 }

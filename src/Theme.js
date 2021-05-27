@@ -25,5 +25,12 @@ export const TextStyle = {
 		fill: "#000",
 		stroke: "#fff",
 		strokeThickness: 2,
+	},
+	playUI: {
+		score: {
+			fontFamily: PressStart2P,
+			fontSize: 20,
+			fill: "#fff",
+		}
 	}
 };

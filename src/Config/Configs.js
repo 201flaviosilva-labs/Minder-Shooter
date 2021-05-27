@@ -18,6 +18,9 @@ const GlobalConfigs = {
 		down: "S",
 		shoot: "SPACE",
 	},
+	playerTextures: [
+		"Minder",
+	],
 };
 
 GlobalConfigs.screen.middleWidth = GlobalConfigs.screen.width / 2;

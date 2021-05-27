@@ -5,7 +5,7 @@ import PT from "../Lang/PT";
 
 let instance = null;
 
-class GlobalState {
+class Settings {
 	constructor() {
 		this.langOptions = {
 			en: EN,
@@ -20,6 +20,8 @@ class GlobalState {
 		this._isMute = GlobalConfigs.isMute;
 		if (localStorage.getItem("isMute")) this._isMute = localStorage.getItem("isMute") === "true" ? true : false;
 		else localStorage.setItem("isMute", this._isMute);
+
+		this._playTexture = GlobalConfigs.playerTextures[0];
 	}
 
 	set language(value) {
@@ -33,11 +35,16 @@ class GlobalState {
 		localStorage.setItem("isMute", value);
 	}
 
-	get language() { return this._language; }
-	get isMute() { return this._isMute; }
+	set playTexture(value) {
+		this._playTexture = value;
+	}
+
+	get language() { return this._language; };
+	get isMute() { return this._isMute; };
+	get playTexture() { return this._playTexture; };
 }
 
-const config = new GlobalState();
+const config = new Settings();
 
 export default {
 	getInstance: () => {
@@ -48,6 +55,6 @@ export default {
 	},
 };
 
-GlobalState.getInstance = () => {
+Settings.getInstance = () => {
 	return instance;
 };

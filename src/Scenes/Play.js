@@ -9,7 +9,7 @@ const SCENE_HEIGHT = Configs.world.height;
 
 export default class Play extends Phaser.Scene {
 	constructor() {
-		super({ key: "Play" });
+		super({ key: "Play", active: false, });
 	}
 
 	create() {
@@ -25,7 +25,7 @@ export default class Play extends Phaser.Scene {
 			collideWorldBounds: true,
 			runChildUpdate: true,
 		});
-		this.player = playersGroup.get(50, 50);
+		this.player = playersGroup.get(50, 130);
 		this.player.generate();
 
 		// Enemies
@@ -50,16 +50,36 @@ export default class Play extends Phaser.Scene {
 		});
 
 		// Collision
-		this.physics.add.overlap(this.player.shoots, this.enemiesGroup, this.shootsEnemy, null, this);
-		this.physics.add.overlap(this.player, this.enemiesGroup, (p, e) => {
-			if (e.alive) this.scene.start("Home");
-		}, null, this);
+		this.physics.add.overlap(this.player.shoots, this.enemiesGroup, this.playerShootsCollideEnemy, null, this);
+		this.physics.add.overlap(this.player, this.enemiesGroup, this.playerCollideEnemy, null, this);
+		this.physics.add.collider(this.enemiesGroup);
+
+		// UI Scene
+		this.scene.launch("PlayUI");
 	}
 
-	shootsEnemy(s, e) {
+	playerShootsCollideEnemy(s, e) {
 		if (!e.alive) return;
 		s.kill();
 		e.kill();
+		this.events.emit("UpdateScore");
+	}
+
+	playerCollideEnemy(p, e) {
+		if (e.alive) {
+			e.kill();
+			this.killPlayer();
+		}
+	}
+
+	killPlayer(p) {
+		this.player.removeLife();
+		this.events.emit("UpdateLife", { lives: this.player.lives, });
+		if (this.player.lives <= 0) {
+			this.scene.start("Home");
+			this.scene.stop("PlayUI");
+			this.scene.stop();
+		}
 	}
 
 	drawDebugGraphics() {
@@ -79,8 +99,7 @@ export default class Play extends Phaser.Scene {
 			const enemy = enemies[i];
 			if (enemy.alive) {
 				this.physics.moveToObject(enemy, this.player, enemy.speed);
-				const angle = Phaser.Math.Angle.Between(this.player.x, this.player.y, enemy.x, enemy.y) - Phaser.Math.DegToRad(180);
-				enemy.setRotation(angle);
+				enemy.fixRotation();
 			}
 		}
 	}

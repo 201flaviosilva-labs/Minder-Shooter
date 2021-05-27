@@ -11,6 +11,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		// Set variables
 		this.speed = 200;
 		this.nextTimeFired = 0;
+		this.lives = 3;
+		this.ammunition = 10;
 
 		// Controllers
 		const controllers = Configs.controllers;
@@ -55,6 +57,20 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.scene.cameras.main.startFollow(this, false, 0.1, 0.1);
 	}
 
+	removeLife() {
+		this.lives--;
+		this.scene.tweens.add({
+			targets: [this],
+			duration: 1000,
+			ease: "Linear",
+			alpha: { from: this.alpha, to: 0.9 },
+			scale: { from: this.scale, to: 0.9 },
+			tint: { from: 0xffffff, to: 0xff0000, },
+			yoyo: true,
+		});
+
+	}
+
 	update(time) {
 		const keys = this.keys;
 
@@ -75,7 +91,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		else this.particles.on = false;
 
 		// Shoot
-		if ((keys.shoot.isDown || this.pointer.isDown) && this.nextTimeFired < time) this.shoot(time);
+		if ((keys.shoot.isDown || this.pointer.isDown) && this.nextTimeFired < time && this.ammunition) this.shoot(time);
 	}
 
 	checkAngle() {
@@ -88,6 +104,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		const shoot = this.shoots.get(this.x, this.y, "Minder");
 		if (shoot) {
 			shoot.fire(this.x, this.y, this.rotation);
+			this.ammunition--;
+			this.scene.events.emit("UpdateAmmunition", { ammunition: this.ammunition, });
 		}
 	}
 }

@@ -14,6 +14,7 @@ import { Banner } from "./Theme";
 import Preload from "./Scenes/Preload";
 import Home from "./Scenes/Home";
 import Play from "./Scenes/Play";
+import PlayUI from "./Scenes/PlayUI";
 
 const config = {
 	title: "Minder Shooter",
@@ -48,7 +49,7 @@ const config = {
 	scene: [
 		Preload,
 		Home,
-		Play,
+		Play, PlayUI,
 	]
 }
 

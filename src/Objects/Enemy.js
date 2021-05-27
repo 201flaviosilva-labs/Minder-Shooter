@@ -12,6 +12,7 @@ export default class Enemy extends Phaser.Physics.Arcade.Sprite {
 		this.alive = false;
 
 		this.setAlpha(0);
+		this.setScale(0);
 
 		// Shoots
 		this.shoots = this.scene.physics.add.group({
