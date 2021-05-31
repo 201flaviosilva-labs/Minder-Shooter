@@ -1,8 +1,9 @@
 import Configs from "../Config/Configs";
 
+import Background from "../Components/Background";
 import Player from "../Objects/Player";
 import Enemy from "../Objects/Enemy";
-import Background from "../Objects/Background";
+import Life from "../Objects/Life";
 
 const SCENE_WIDTH = Configs.world.width;
 const SCENE_HEIGHT = Configs.world.height;
@@ -34,13 +35,20 @@ export default class Play extends Phaser.Scene {
 			collideWorldBounds: true,
 		});
 
+		// Lifes
+		this.lifeGroup = this.physics.add.group({
+			classType: Life,
+			maxSize: 2,
+			runChildUpdate: true,
+		});
+
 		for (let i = 0; i < 5; i++) {
 			const enemy = this.enemiesGroup.get(width, height);
 			if (enemy) enemy.generate();
 		}
 
-		// Timer
-		const timer = this.time.addEvent({
+		// Timers
+		const timerEnemy = this.time.addEvent({
 			delay: 1500,
 			callback: () => {
 				const enemy = this.enemiesGroup.get(width, height);
@@ -49,31 +57,46 @@ export default class Play extends Phaser.Scene {
 			repeat: -1,
 		});
 
+		const timerLife = this.time.addEvent({
+			delay: 20000,
+			callback: () => this.lifeGroup.get(),
+			repeat: -1,
+		});
+
 		// Collision
-		this.physics.add.overlap(this.player.shoots, this.enemiesGroup, this.playerShootsCollideEnemy, null, this);
-		this.physics.add.overlap(this.player, this.enemiesGroup, this.playerCollideEnemy, null, this);
+		this.physics.add.overlap(this.player.shoots, this.enemiesGroup, this.playerShootsOverlapEnemy, null, this);
+		this.physics.add.overlap(this.player, this.enemiesGroup, this.playerOverlapEnemy, null, this);
+		this.physics.add.overlap(this.player, this.lifeGroup, this.playerOverlapLife, null, this);
 		this.physics.add.collider(this.enemiesGroup);
 
 		// UI Scene
 		this.scene.launch("PlayUI");
 	}
 
-	playerShootsCollideEnemy(s, e) {
+	playerShootsOverlapEnemy(s, e) {
 		if (!e.alive) return;
 		s.kill();
 		e.kill();
 		this.events.emit("UpdateScore");
 	}
 
-	playerCollideEnemy(p, e) {
+	playerOverlapEnemy(p, e) {
 		if (e.alive) {
 			e.kill();
-			this.killPlayer();
+			this.player.removeLife();
+			this.updatePlayerLives();
 		}
 	}
 
-	killPlayer(p) {
-		this.player.removeLife();
+	playerOverlapLife(p, l) {
+		if (this.player.maxLives > this.player.lives) {
+			this.player.lives++;
+			this.updatePlayerLives();
+		}
+		l.kill();
+	}
+
+	updatePlayerLives(p) {
 		this.events.emit("UpdateLife", { lives: this.player.lives, });
 		if (this.player.lives <= 0) {
 			this.scene.start("Home");

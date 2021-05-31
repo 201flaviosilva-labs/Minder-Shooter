@@ -12,6 +12,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.speed = 200;
 		this.nextTimeFired = 0;
 		this.lives = 3;
+		this.maxLives = 10;
 		this.ammunition = 10;
 
 		// Controllers

@@ -57,7 +57,7 @@ export default class Home extends Phaser.Scene {
 
 		this.tweens.add({
 			targets: [icon],
-			duration: 500,
+			duration: 250,
 			ease: "Back.easeIn",
 			alpha: { from: icon.alpha, to: 0 },
 			scale: { from: icon.scale, to: 0 },
