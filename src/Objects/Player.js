@@ -1,5 +1,5 @@
 import Configs from "../Config/Configs";
-import Bullet from "./Bullet";
+import Shoots from "./Shoots";
 
 const SCENE_WIDTH = Configs.world.width;
 const SCENE_HEIGHT = Configs.world.height;
@@ -27,7 +27,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 		// Shoots
 		this.shoots = this.scene.physics.add.group({
-			classType: Bullet,
+			classType: Shoots,
 			runChildUpdate: true,
 		});
 

@@ -43,17 +43,14 @@ export default class Play extends Phaser.Scene {
 		});
 
 		for (let i = 0; i < 5; i++) {
-			const enemy = this.enemiesGroup.get(width, height);
-			if (enemy) enemy.generate();
+			this.createEnemy();
 		}
 
 		// Timers
 		const timerEnemy = this.time.addEvent({
 			delay: 1500,
-			callback: () => {
-				const enemy = this.enemiesGroup.get(width, height);
-				if (enemy) enemy.generate();
-			},
+			callback: this.createEnemy,
+			callbackScope: this,
 			repeat: -1,
 		});
 
@@ -65,12 +62,20 @@ export default class Play extends Phaser.Scene {
 
 		// Collision
 		this.physics.add.overlap(this.player.shoots, this.enemiesGroup, this.playerShootsOverlapEnemy, null, this);
-		this.physics.add.overlap(this.player, this.enemiesGroup, this.playerOverlapEnemy, null, this);
+		this.physics.add.overlap(this.player, this.enemiesGroup, this.enemyHitPlayer, null, this);
 		this.physics.add.overlap(this.player, this.lifeGroup, this.playerOverlapLife, null, this);
 		this.physics.add.collider(this.enemiesGroup);
 
 		// UI Scene
 		this.scene.launch("PlayUI");
+	}
+
+	createEnemy() {
+		const enemy = this.enemiesGroup.get(1000, 1000);
+		if (enemy) {
+			enemy.generate();
+			this.physics.add.overlap(this.player, enemy.shoots, this.shootHitPlayer, null, this);
+		}
 	}
 
 	playerShootsOverlapEnemy(s, e) {
@@ -80,7 +85,7 @@ export default class Play extends Phaser.Scene {
 		this.events.emit("UpdateScore");
 	}
 
-	playerOverlapEnemy(p, e) {
+	enemyHitPlayer(p, e) {
 		if (e.alive) {
 			e.kill();
 			this.player.removeLife();
@@ -94,6 +99,12 @@ export default class Play extends Phaser.Scene {
 			this.updatePlayerLives();
 		}
 		l.kill();
+	}
+
+	shootHitPlayer(p, s) {
+		s.kill();
+		this.player.removeLife();
+		this.updatePlayerLives();
 	}
 
 	updatePlayerLives(p) {
