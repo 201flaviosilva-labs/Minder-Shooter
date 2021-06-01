@@ -62,7 +62,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.lives--;
 		this.scene.tweens.add({
 			targets: [this],
-			duration: 1000,
+			duration: 250,
 			ease: "Linear",
 			alpha: { from: this.alpha, to: 0.9 },
 			scale: { from: this.scale, to: 0.9 },

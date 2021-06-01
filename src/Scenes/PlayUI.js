@@ -27,14 +27,19 @@ export default class Home extends Phaser.Scene {
 
 		this.labelAmmunition = this.add.text(middleWidth, height - 50, "Ammunition: " + 10, TextStyle.playUI.score).setOrigin(0.5);
 
+		// Events
+		this.playScene.events.removeListener("UpdateScore");
+		this.playScene.events.removeListener("UpdateAmmunition");
+		this.playScene.events.removeListener("UpdateLife");
+
+		this.playScene.events.on("UpdateScore", this.addScore, this);
+		this.playScene.events.on("UpdateAmmunition", this.updateAmmunition, this);
+
 		this.playScene.events.on("UpdateLife", data => {
 			if (data.lives > lives) this.addNewLife();
 			else this.deleteLife();
 			lives = data.lives;
 		}, this);
-
-		this.playScene.events.on("UpdateScore", this.addScore, this);
-		this.playScene.events.on("UpdateAmmunition", this.updateAmmunition, this);
 	}
 
 	addNewLife() {
@@ -44,7 +49,7 @@ export default class Home extends Phaser.Scene {
 
 		this.tweens.add({
 			targets: [life],
-			duration: 750,
+			duration: 250,
 			ease: "Back",
 			alpha: { from: 0, to: 0.75, },
 			scale: { from: 0, to: 0.5, },
