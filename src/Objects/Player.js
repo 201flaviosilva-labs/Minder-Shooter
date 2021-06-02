@@ -109,4 +109,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 			this.scene.events.emit("UpdateAmmunition", { ammunition: this.ammunition, });
 		}
 	}
+
+	addAmmunition() {
+		this.ammunition += Phaser.Math.Between(5, 20);
+		this.scene.events.emit("UpdateAmmunition", { ammunition: this.ammunition, });
+	}
 }
