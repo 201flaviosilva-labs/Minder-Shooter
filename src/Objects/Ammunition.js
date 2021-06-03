@@ -5,7 +5,7 @@ const SCENE_HEIGHT = Configs.world.height;
 
 export default class Ammunition extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y, frame) {
-		super(scene, x, y, "Minder");
+		super(scene, x, y, frame);
 
 		this.alive = true;
 

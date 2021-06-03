@@ -21,7 +21,7 @@ class Settings {
 		if (localStorage.getItem("isMute")) this._isMute = localStorage.getItem("isMute") === "true" ? true : false;
 		else localStorage.setItem("isMute", this._isMute);
 
-		this._playTexture = GlobalConfigs.playerTextures[0];
+		this._playTexture = GlobalConfigs.playerTextures[3];
 	}
 
 	set language(value) {

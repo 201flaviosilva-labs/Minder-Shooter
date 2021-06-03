@@ -2,8 +2,18 @@ import ProgressBar from "../Components/ProgressBar";
 
 // ---- Assets
 import Background from "../Assets/Sprites/Background.png";
-import Sprite from "../Assets/Sprites/Sprite.png";
-import Minder from "../Assets/Sprites/Minder.png";
+
+// -- Minders
+import BarMinder from "../Assets/Sprites/Minders/BarMinder.png";
+import BatMinder from "../Assets/Sprites/Minders/BatMinder.png";
+import Bigodes from "../Assets/Sprites/Minders/Bigodes.png";
+import CowMinder from "../Assets/Sprites/Minders/CowMinder.png";
+import Minder from "../Assets/Sprites/Minders/Minder.png";
+import Mindera from "../Assets/Sprites/Minders/Mindera.png";
+import Nerd from "../Assets/Sprites/Minders/Nerd.png";
+import VampMinder from "../Assets/Sprites/Minders/VampMinder.png";
+
+// Enemies
 import Duke from "../Assets/Sprites/Duke/Duke.png";
 
 export default class Preload extends Phaser.Scene {
@@ -23,15 +33,26 @@ export default class Preload extends Phaser.Scene {
 		this.load.on("complete", () => {
 			progressBar.complete();
 
-			// this.scene.start("Home");
-			this.scene.start("Play");
+			this.scene.start("Home");
+			// this.scene.start("Dock");
+			// this.scene.start("Play");
 		});
 	}
 
 	importSprites() {
 		this.load.image("Background", Background);
-		this.load.image("Sprite", Sprite);
+
+		// Minders
+		this.load.image("BarMinder", BarMinder);
+		this.load.image("BatMinder", BatMinder);
+		this.load.image("Bigodes", Bigodes);
+		this.load.image("CowMinder", CowMinder);
 		this.load.image("Minder", Minder);
+		this.load.image("Mindera", Mindera);
+		this.load.image("Nerd", Nerd);
+		this.load.image("VampMinder", VampMinder);
+
+		// Enemy
 		this.load.image("Duke", Duke);
 	}
 

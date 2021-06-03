@@ -1,12 +1,16 @@
 import Configs from "../Config/Configs";
 import Shoots from "./Shoots";
 
+import Settings from "../State/Settings";
+
 const SCENE_WIDTH = Configs.world.width;
 const SCENE_HEIGHT = Configs.world.height;
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y) {
-		super(scene, x, y, "Minder");
+		const settings = Settings.getInstance();
+		const selectedTexture = settings.playTexture;
+		super(scene, x, y, selectedTexture);
 
 		// Set variables
 		this.speed = 200;
@@ -14,6 +18,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.lives = 3;
 		this.maxLives = 10;
 		this.ammunition = 10;
+		this.selectedTexture = selectedTexture;
 
 		// Controllers
 		const controllers = Configs.controllers;
@@ -32,7 +37,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		});
 
 		// Particles
-		this.particles = this.scene.add.particles("Minder").createEmitter({
+		this.particles = this.scene.add.particles(selectedTexture).createEmitter({
 			lifespan: 750,
 			delay: 100,
 			scale: { start: 0.2, end: 0 },
@@ -102,7 +107,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 
 	shoot(time) {
 		this.nextTimeFired = time + 100;
-		const shoot = this.shoots.get(this.x, this.y, "Minder");
+		const shoot = this.shoots.get(this.x, this.y, this.selectedTexture);
 		if (shoot) {
 			shoot.fire(this.x, this.y, this.rotation);
 			this.ammunition--;

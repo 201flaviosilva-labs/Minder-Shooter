@@ -64,13 +64,13 @@ export default class Play extends Phaser.Scene {
 
 		const timerLife = this.time.addEvent({
 			delay: 20000,
-			callback: () => this.lifeGroup.get(),
+			callback: () => this.lifeGroup.get(0, 0, this.player.selectedTexture),
 			repeat: -1,
 		});
 
 		const timerAmmunition = this.time.addEvent({
 			delay: 10000,
-			callback: () => this.ammunitionGroup.get(),
+			callback: () => this.ammunitionGroup.get(0, 0, this.player.selectedTexture),
 			repeat: -1,
 		});
 

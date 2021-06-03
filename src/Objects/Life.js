@@ -5,7 +5,7 @@ const SCENE_HEIGHT = Configs.world.height;
 
 export default class Life extends Phaser.Physics.Arcade.Sprite {
 	constructor(scene, x, y, frame) {
-		super(scene, x, y, "Minder");
+		super(scene, x, y, frame);
 
 		this.setScale(0.45);
 		this.setAlpha(0.75);
@@ -14,7 +14,7 @@ export default class Life extends Phaser.Physics.Arcade.Sprite {
 
 		this.alive = true;
 
-		this.particles = this.scene.add.particles("Minder").createEmitter({
+		this.particles = this.scene.add.particles(frame).createEmitter({
 			delay: 100,
 			lifespan: { min: 250, max: 750 },
 			quantity: { min: 1, max: 5 },

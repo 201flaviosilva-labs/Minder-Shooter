@@ -26,6 +26,29 @@ export const TextStyle = {
 		stroke: "#fff",
 		strokeThickness: 2,
 	},
+	dock: {
+		title: {
+			fontFamily: PressStart2P,
+			fontSize: 50,
+			fill: "#000",
+			stroke: "#fff",
+			strokeThickness: 2,
+		},
+		play: {
+			fontFamily: PressStart2P,
+			fontSize: 20,
+			fill: "#fff",
+			stroke: "#000",
+			strokeThickness: 2,
+		},
+		exit: {
+			fontFamily: PressStart2P,
+			fontSize: 20,
+			fill: "#000",
+			stroke: "#fff",
+			strokeThickness: 2,
+		},
+	},
 	playUI: {
 		score: {
 			fontFamily: PressStart2P,

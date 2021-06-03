@@ -19,7 +19,14 @@ const GlobalConfigs = {
 		shoot: "SPACE",
 	},
 	playerTextures: [
+		"BarMinder",
+		"BatMinder",
+		"Bigodes",
+		"CowMinder",
 		"Minder",
+		"Mindera",
+		"Nerd",
+		"VampMinder",
 	],
 };
 

@@ -13,6 +13,7 @@ import { Banner } from "./Theme";
 // Scenes
 import Preload from "./Scenes/Preload";
 import Home from "./Scenes/Home";
+import Dock from "./Scenes/Dock";
 import Play from "./Scenes/Play";
 import PlayUI from "./Scenes/PlayUI";
 
@@ -48,7 +49,7 @@ const config = {
 	},
 	scene: [
 		Preload,
-		Home,
+		Home, Dock,
 		Play, PlayUI,
 	]
 }
