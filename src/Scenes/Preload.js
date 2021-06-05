@@ -36,9 +36,9 @@ export default class Preload extends Phaser.Scene {
 		this.load.on("complete", () => {
 			progressBar.complete();
 
-			// this.scene.start("Home");
-			this.scene.start("Settings");
+			this.scene.start("Home");
 			// this.scene.start("Dock");
+			// this.scene.start("Settings");
 			// this.scene.start("Play");
 		});
 	}

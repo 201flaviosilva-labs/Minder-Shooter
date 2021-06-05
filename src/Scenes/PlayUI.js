@@ -9,7 +9,7 @@ export default class Home extends Phaser.Scene {
 	}
 
 	init() {
-		this.settings = Settings.getInstance();
+		this.Settings = Settings.getInstance();
 		this.playScene = this.scene.get("Play");
 		this.score = 0;
 
@@ -18,14 +18,16 @@ export default class Home extends Phaser.Scene {
 
 	create() {
 		const { width, height, middleWidth, middleHeight } = Configs.screen;
+		const { play } = this.Settings.output;
+
 		let lives = 3;
 		for (let i = 0; i < lives; i++) {
 			this.addNewLife();
 		}
 
-		this.labelScore = this.add.text(width - 240, 50, "Score: " + this.score, TextStyle.playUI.score);
+		this.labelScore = this.add.text(width - 240, 50, play.score + this.score, TextStyle.playUI.score);
 
-		this.labelAmmunition = this.add.text(middleWidth, height - 50, "Ammunition: " + 10, TextStyle.playUI.score).setOrigin(0.5);
+		this.labelAmmunition = this.add.text(middleWidth, height - 50, play.ammunition + 10, TextStyle.playUI.score).setOrigin(0.5);
 
 		// Events
 		this.playScene.events.removeListener("UpdateScore");
@@ -44,7 +46,7 @@ export default class Home extends Phaser.Scene {
 
 	addNewLife() {
 		const x = 50 * this.lifeIcons.length + 50;
-		const life = this.add.image(x, 50, this.settings.playTexture).setScale(0.5).setAngle(90).setTint(0xff0000).setAlpha(0);
+		const life = this.add.image(x, 50, this.Settings.playTexture).setScale(0.5).setAngle(90).setTint(0xff0000).setAlpha(0);
 		this.lifeIcons.push(life);
 
 		this.tweens.add({
@@ -71,11 +73,13 @@ export default class Home extends Phaser.Scene {
 	}
 
 	addScore() {
+		const { score } = this.Settings.output.play;
 		this.score++;
-		this.labelScore.setText("Score: " + this.score);
+		this.labelScore.setText(score + this.score);
 	}
 
 	updateAmmunition(data) {
-		this.labelAmmunition.setText("Ammunition: " + data.ammunition);
+		const { ammunition } = this.Settings.output.play;
+		this.labelAmmunition.setText(ammunition + data.ammunition);
 	}
 }

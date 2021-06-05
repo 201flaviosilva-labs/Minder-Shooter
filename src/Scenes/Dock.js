@@ -16,10 +16,11 @@ export default class Dock extends Phaser.Scene {
 
 	create() {
 		const { width, height, middleWidth, middleHeight } = Configs.screen;
+		const { dock } = this.Settings.output;
 
 		const background = new Background(this);
 
-		const title = this.add.text(middleWidth, 50, "Dock", TextStyle.dock.title).setOrigin(0.5);
+		const title = this.add.text(middleWidth, 50, dock.title, TextStyle.dock.title).setOrigin(0.5);
 
 		this.graphics = this.add.graphics();
 		this.graphics.setDefaultStyles({
@@ -44,7 +45,7 @@ export default class Dock extends Phaser.Scene {
 		}
 
 		{ // Exit
-			const exit = this.add.text(middleWidth, height - 30, "Exit", TextStyle.dock.exit).setOrigin(0.5);
+			const exit = this.add.text(middleWidth, height - 30, dock.exit, TextStyle.dock.exit).setOrigin(0.5);
 			exit.setInteractive({ useHandCursor: true });
 			exit.on("pointerup", () => { this.scene.start("Home"); });
 		}
