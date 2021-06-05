@@ -1,6 +1,6 @@
 import ProgressBar from "../Components/ProgressBar";
 
-// ---- Assets
+// ---- Sprites
 import Background from "../Assets/Sprites/Background.png";
 
 // -- Minders
@@ -13,8 +13,10 @@ import Mindera from "../Assets/Sprites/Minders/Mindera.png";
 import Nerd from "../Assets/Sprites/Minders/Nerd.png";
 import VampMinder from "../Assets/Sprites/Minders/VampMinder.png";
 
-// Enemies
+// -- Enemies
 import Duke from "../Assets/Sprites/Duke/Duke.png";
+
+// ---- UI
 
 export default class Preload extends Phaser.Scene {
 	constructor() {
@@ -25,6 +27,7 @@ export default class Preload extends Phaser.Scene {
 		const progressBar = new ProgressBar(this);
 
 		this.importSprites();
+		this.importUI();
 		this.importSounds();
 
 		this.load.on("progress", (p) => progressBar.updateBar(p));
@@ -33,7 +36,8 @@ export default class Preload extends Phaser.Scene {
 		this.load.on("complete", () => {
 			progressBar.complete();
 
-			this.scene.start("Home");
+			// this.scene.start("Home");
+			this.scene.start("Settings");
 			// this.scene.start("Dock");
 			// this.scene.start("Play");
 		});
@@ -55,6 +59,8 @@ export default class Preload extends Phaser.Scene {
 		// Enemy
 		this.load.image("Duke", Duke);
 	}
+
+	importUI() { }
 
 	importSounds() { }
 }

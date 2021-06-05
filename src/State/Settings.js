@@ -9,15 +9,15 @@ class Settings {
 	constructor() {
 		this.langOptions = {
 			en: EN,
-			pt: PT
+			pt: PT,
 		};
 
-		this._language = GlobalConfigs.language;
+		this._language = "en";
 		if (localStorage.getItem("language")) this._language = localStorage.getItem("language");
 		else localStorage.setItem("language", this._language);
 		this.output = this.langOptions[this._language];
 
-		this._isMute = GlobalConfigs.isMute;
+		this._isMute = true;
 		if (localStorage.getItem("isMute")) this._isMute = localStorage.getItem("isMute") === "true" ? true : false;
 		else localStorage.setItem("isMute", this._isMute);
 

@@ -10,7 +10,6 @@ const GlobalConfigs = {
 		height: 0,
 	},
 	debug: false,
-	language: "en",
 	controllers: {
 		left: "A",
 		right: "D",
