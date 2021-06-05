@@ -24,4 +24,20 @@ canvas {
   border: 1px solid #ffd100;
   box-shadow: 0 0 20px #ffd100;
   border-radius: 4px;
+  animation: shadowAnimation infinite 10s;
+}
+
+@keyframes shadowAnimation {
+  0% {
+    border: 1px solid #ffd100;
+    box-shadow: 0 0 20px #ffd100;
+  }
+  50% {
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 20px #ffd100, 0 0 40px #ffffff;
+  }
+  100% {
+    border: 1px solid #ffd100;
+    box-shadow: 0 0 20px #ffd100;
+  }
 }
