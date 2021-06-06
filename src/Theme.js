@@ -57,6 +57,13 @@ export const TextStyle = {
 			stroke: "#fff",
 			strokeThickness: 2,
 		},
+		noScore: {
+			fontFamily: PressStart2P,
+			fontSize: 50,
+			fill: "#f00",
+			stroke: "#000",
+			strokeThickness: 2,
+		},
 		table: {
 			name: {
 				fontFamily: PressStart2P,
@@ -109,6 +116,15 @@ export const TextStyle = {
 			fill: "#000",
 			stroke: "#fff",
 			strokeThickness: 2,
+		},
+	},
+	play: {
+		pause: {
+			fontFamily: PressStart2P,
+			fontSize: 50,
+			fill: "#fff",
+			stroke: "#000",
+			strokeThickness: 4,
 		},
 	},
 	playUI: {

@@ -33,7 +33,7 @@ export default class Leaderboard extends Phaser.Scene {
 				const date = this.add.text(middleWidth + marginX, y, top[i].date, table.date).setOrigin(0.5);
 			}
 		} else {
-			this.add.text(middleWidth, middleHeight, leaderboard.noScore, TextStyle.leaderboard.table.name).setFontSize(50).setOrigin(0.5);
+			this.add.text(middleWidth, middleHeight, leaderboard.noScore, TextStyle.leaderboard.noScore).setOrigin(0.5);
 		}
 
 

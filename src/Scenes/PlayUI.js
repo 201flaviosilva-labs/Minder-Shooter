@@ -25,8 +25,13 @@ export default class Home extends Phaser.Scene {
 		}
 
 		this.labelScore = this.add.text(width - 240, 50, play.score + 0, TextStyle.playUI.score);
-
 		this.labelAmmunition = this.add.text(middleWidth, height - 50, play.ammunition + 10, TextStyle.playUI.score).setOrigin(0.5);
+		this.pauseLabel = this.add.text(middleWidth, middleHeight, this.Settings.output.play.pause, TextStyle.play.pause).setOrigin(0.5).setVisible(false);
+
+		// Pause Keys
+		const keyESC = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
+		keyESC.removeAllListeners();
+		keyESC.on("down", this.pauseGame, this);
 
 		// Events
 		this.playScene.events.removeListener("UpdateScore");
@@ -79,5 +84,10 @@ export default class Home extends Phaser.Scene {
 	updateAmmunition(data) {
 		const { ammunition } = this.Settings.output.play;
 		this.labelAmmunition.setText(ammunition + data.ammunition);
+	}
+
+	pauseGame() {
+		this.pauseLabel.setVisible(!this.pauseLabel.visible);
+		this.playScene.pauseGame();
 	}
 }

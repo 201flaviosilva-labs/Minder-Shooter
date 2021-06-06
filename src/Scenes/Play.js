@@ -1,4 +1,5 @@
 import Configs from "../Config/Configs";
+import { TextStyle } from "../Theme";
 import Settings from "../State/Settings";
 
 import Background from "../Components/Background";
@@ -19,6 +20,7 @@ export default class Play extends Phaser.Scene {
 	init() {
 		this.Settings = Settings.getInstance();
 		this.score = 0;
+		this.isPaused = false;
 	}
 
 	create() {
@@ -158,7 +160,19 @@ export default class Play extends Phaser.Scene {
 		}
 	}
 
+	pauseGame() {
+		this.isPaused = !this.isPaused;
+		if (this.isPaused) {
+			this.scene.pause();
+			this.physics.pause();
+		} else {
+			this.scene.resume();
+			this.physics.resume();
+		}
+	}
+
 	update() {
+		if (this.isPaused) return;
 		const enemies = this.enemiesGroup.getChildren();
 		for (let i = 0; i < enemies.length; i++) {
 			const enemy = enemies[i];
