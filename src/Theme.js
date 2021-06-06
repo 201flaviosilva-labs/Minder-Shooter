@@ -49,6 +49,45 @@ export const TextStyle = {
 			strokeThickness: 2,
 		},
 	},
+	leaderboard: {
+		title: {
+			fontFamily: PressStart2P,
+			fontSize: 50,
+			fill: "#000",
+			stroke: "#fff",
+			strokeThickness: 2,
+		},
+		table: {
+			name: {
+				fontFamily: PressStart2P,
+				fontSize: 20,
+				fill: "#f00",
+				stroke: "#000",
+				strokeThickness: 2,
+			},
+			score: {
+				fontFamily: PressStart2P,
+				fontSize: 20,
+				fill: "#ff0",
+				stroke: "#000",
+				strokeThickness: 2,
+			},
+			date: {
+				fontFamily: PressStart2P,
+				fontSize: 20,
+				fill: "#0f0",
+				stroke: "#000",
+				strokeThickness: 2,
+			},
+		},
+		exit: {
+			fontFamily: PressStart2P,
+			fontSize: 20,
+			fill: "#000",
+			stroke: "#fff",
+			strokeThickness: 2,
+		},
+	},
 	settings: {
 		title: {
 			fontFamily: PressStart2P,

@@ -11,7 +11,6 @@ export default class Home extends Phaser.Scene {
 	init() {
 		this.Settings = Settings.getInstance();
 		this.playScene = this.scene.get("Play");
-		this.score = 0;
 
 		this.lifeIcons = [];
 	}
@@ -25,7 +24,7 @@ export default class Home extends Phaser.Scene {
 			this.addNewLife();
 		}
 
-		this.labelScore = this.add.text(width - 240, 50, play.score + this.score, TextStyle.playUI.score);
+		this.labelScore = this.add.text(width - 240, 50, play.score + 0, TextStyle.playUI.score);
 
 		this.labelAmmunition = this.add.text(middleWidth, height - 50, play.ammunition + 10, TextStyle.playUI.score).setOrigin(0.5);
 
@@ -72,10 +71,9 @@ export default class Home extends Phaser.Scene {
 		});
 	}
 
-	addScore() {
+	addScore(s) {
 		const { score } = this.Settings.output.play;
-		this.score++;
-		this.labelScore.setText(score + this.score);
+		this.labelScore.setText(score + s);
 	}
 
 	updateAmmunition(data) {

@@ -2,6 +2,7 @@ import GlobalConfigs from "../Config/Configs";
 
 import EN from "../Lang/EN";
 import PT from "../Lang/PT";
+import { sortDescendingObj } from "../Utils/Utils";
 
 let instance = null;
 
@@ -22,6 +23,10 @@ class Settings {
 		else localStorage.setItem("isMute", this._isMute);
 
 		this._playTexture = GlobalConfigs.playerTextures[3];
+
+		this._score = [];
+		if (localStorage.getItem("score")) this._score = JSON.parse(localStorage.getItem("score"));
+		else localStorage.setItem("score", JSON.stringify(this._score));
 	}
 
 	set language(value) {
@@ -39,9 +44,23 @@ class Settings {
 		this._playTexture = value;
 	}
 
+	addScore(data) {
+		this._score.push(data);
+		localStorage.setItem("score", JSON.stringify(this._score));
+	}
+
+	sortScore() {
+		return sortDescendingObj(this._score, "score");
+	}
+
+	getTopScore(n) {
+		return this.sortScore().slice(0, n);
+	}
+
 	get language() { return this._language; };
 	get isMute() { return this._isMute; };
 	get playTexture() { return this._playTexture; };
+	get score() { return this._score; };
 }
 
 const config = new Settings();

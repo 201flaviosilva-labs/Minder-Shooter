@@ -1,10 +1,12 @@
 import Configs from "../Config/Configs";
+import Settings from "../State/Settings";
 
 import Background from "../Components/Background";
 import Player from "../Objects/Player";
 import Enemy from "../Objects/Enemy";
 import Life from "../Objects/Life";
 import Ammunition from "../Objects/Ammunition";
+import { formateScore, getDateFormatted } from "../Utils/Utils";
 
 const SCENE_WIDTH = Configs.world.width;
 const SCENE_HEIGHT = Configs.world.height;
@@ -12,6 +14,11 @@ const SCENE_HEIGHT = Configs.world.height;
 export default class Play extends Phaser.Scene {
 	constructor() {
 		super({ key: "Play", active: false, });
+	}
+
+	init() {
+		this.Settings = Settings.getInstance();
+		this.score = 0;
 	}
 
 	create() {
@@ -97,7 +104,8 @@ export default class Play extends Phaser.Scene {
 		if (!e.alive) return;
 		s.kill();
 		e.kill();
-		this.events.emit("UpdateScore");
+		this.score += formateScore(this.time.now);
+		this.events.emit("UpdateScore", this.score);
 	}
 
 	enemyHitPlayer(p, e) {
@@ -130,6 +138,9 @@ export default class Play extends Phaser.Scene {
 	updatePlayerLives(p) {
 		this.events.emit("UpdateLife", { lives: this.player.lives, });
 		if (this.player.lives <= 0) {
+			const name = prompt("Enter Your Name:", "Player");
+			this.Settings.addScore({ name: name, score: this.score, date: getDateFormatted(), });
+
 			this.scene.start("Home");
 			this.scene.stop("PlayUI");
 			this.scene.stop();

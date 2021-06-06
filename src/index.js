@@ -13,8 +13,9 @@ import { Banner } from "./Theme";
 // Scenes
 import Preload from "./Scenes/Preload";
 import Home from "./Scenes/Home";
-import Settings from "./Scenes/Settings";
 import Dock from "./Scenes/Dock";
+import Leaderboard from "./Scenes/Leaderboard";
+import Settings from "./Scenes/Settings";
 import Play from "./Scenes/Play";
 import PlayUI from "./Scenes/PlayUI";
 
@@ -50,7 +51,7 @@ const config = {
 	},
 	scene: [
 		Preload,
-		Home, Settings, Dock,
+		Home, Dock, Leaderboard, Settings,
 		Play, PlayUI,
 	]
 }
