@@ -14,10 +14,16 @@ const pt = {
 		fullscreen: "Ecrã Cheia",
 		exit: "Sair",
 	},
+	leaderboard: {
+		title: "Pontuações",
+		noScore: "Sem Pontuações!",
+		exit: "Sair",
+	},
 	play: {
 		score: "Pontuação: ",
 		ammunition: "Munição: ",
 		pause: "O Jogo Está Em Pausa",
+		name: "Escreve O Teu Nome:",
 	},
 };
 

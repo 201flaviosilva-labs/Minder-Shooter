@@ -14,10 +14,16 @@ const en = {
 		fullscreen: "Full Screen",
 		exit: "Exit",
 	},
+	leaderboard: {
+		title: "Leaderboard",
+		noScore: "No Scores!",
+		exit: "Exit",
+	},
 	play: {
 		score: "Score: ",
 		ammunition: "Ammunition: ",
 		pause: "The Game is Paused",
+		name: "Enter Your Name:",
 	},
 };
 

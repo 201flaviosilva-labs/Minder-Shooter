@@ -138,7 +138,7 @@ export default class Play extends Phaser.Scene {
 	updatePlayerLives(p) {
 		this.events.emit("UpdateLife", { lives: this.player.lives, });
 		if (this.player.lives <= 0) {
-			const name = prompt("Enter Your Name:", "Player");
+			const name = prompt(this.Settings.output.play.name, "Player");
 			this.Settings.addScore({ name: name, score: this.score, date: getDateFormatted(), });
 
 			this.scene.start("Home");
