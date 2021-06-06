@@ -57,6 +57,11 @@ class Settings {
 		return this.sortScore().slice(0, n);
 	}
 
+	clearScore() {
+		this._score = [];
+		localStorage.setItem("score", JSON.stringify(this._score));
+	}
+
 	get language() { return this._language; };
 	get isMute() { return this._isMute; };
 	get playTexture() { return this._playTexture; };

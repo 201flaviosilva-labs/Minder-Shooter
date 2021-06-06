@@ -2,6 +2,7 @@ const pt = {
 	home: {
 		play: "Jogar",
 		dock: "Doca",
+		leaderboard: "Pontuações",
 		settings: "Definições",
 	},
 	dock: {

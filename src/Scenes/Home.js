@@ -40,7 +40,7 @@ export default class Home extends Phaser.Scene {
 		}
 
 		{ // Leaderboard
-			const settings = this.add.text(middleWidth, middleHeight + margin * 0.66, "Leaderboard", TextStyle.home).setOrigin(0.5);
+			const settings = this.add.text(middleWidth, middleHeight + margin * 0.66, home.leaderboard, TextStyle.home).setOrigin(0.5);
 			settings.setInteractive({ useHandCursor: true, });
 			settings.on("pointerup", () => {
 				this.scene.start("Leaderboard");

@@ -2,6 +2,7 @@ const en = {
 	home: {
 		play: "Play",
 		dock: "Dock",
+		leaderboard: "Leaderboard",
 		settings: "Settings",
 	},
 	dock: {

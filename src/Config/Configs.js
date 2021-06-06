@@ -20,6 +20,8 @@ const GlobalConfigs = {
 		up2: "UP",
 		down2: "DOWN",
 		shoot: "SPACE",
+		pause: "P",
+		exit: "Q",
 	},
 	playerTextures: [
 		"BarMinder",
