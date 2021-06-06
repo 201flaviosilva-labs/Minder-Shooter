@@ -56,10 +56,13 @@ export default class Dock extends Phaser.Scene {
 		const textures = Configs.playerTextures;
 
 		for (let i = 0; i < textures.length; i++) {
-			const x = i * 150 + 50;
+			// const x = i * 150 + 100;
+			const x = i * 125 + 50;
+			// const y = i < 7 ? middleHeight - 50 : middleHeight + 50;
+			const y = middleHeight;
 			const t = textures[i];
 
-			const sprite = this.add.image(x, middleHeight, t);
+			const sprite = this.add.image(x, y, t);
 			sprite.setAngle(90);
 			sprite.setInteractive({ useHandCursor: true, });
 			sprite.on("pointerup", () => {

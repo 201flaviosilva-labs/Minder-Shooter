@@ -25,6 +25,8 @@ const GlobalConfigs = {
 		"Minder",
 		"Mindera",
 		"Nerd",
+		"PirateMinder",
+		"PixelMinder",
 		"VampMinder",
 	],
 };
