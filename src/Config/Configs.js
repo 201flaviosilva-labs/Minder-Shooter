@@ -11,10 +11,14 @@ const GlobalConfigs = {
 	},
 	debug: false,
 	controllers: {
-		left: "A",
-		right: "D",
-		up: "W",
-		down: "S",
+		left1: "A",
+		right1: "D",
+		up1: "W",
+		down1: "S",
+		left2: "LEFT",
+		right2: "RIGHT",
+		up2: "UP",
+		down2: "DOWN",
 		shoot: "SPACE",
 	},
 	playerTextures: [

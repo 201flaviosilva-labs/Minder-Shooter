@@ -23,10 +23,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		// Controllers
 		const controllers = Configs.controllers;
 		this.keys = this.scene.input.keyboard.addKeys({
-			left: controllers.left,
-			right: controllers.right,
-			up: controllers.up,
-			down: controllers.down,
+			left1: controllers.left1,
+			right1: controllers.right1,
+			up1: controllers.up1,
+			down1: controllers.down1,
+			left2: controllers.left2,
+			right2: controllers.right2,
+			up2: controllers.up2,
+			down2: controllers.down2,
 			shoot: controllers.shoot,
 		});
 
@@ -84,13 +88,13 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
 		this.checkAngle();
 
 		// X
-		if (keys.left.isDown) this.setVelocityX(-this.speed);
-		else if (keys.right.isDown) this.setVelocityX(this.speed);
+		if (keys.left1.isDown || keys.left2.isDown) this.setVelocityX(-this.speed);
+		else if (keys.right1.isDown || keys.right2.isDown) this.setVelocityX(this.speed);
 		else this.setVelocityX(0);
 
 		// Y
-		if (keys.up.isDown) this.setVelocityY(-this.speed);
-		else if (keys.down.isDown) this.setVelocityY(this.speed);
+		if (keys.up1.isDown || keys.up2.isDown) this.setVelocityY(-this.speed);
+		else if (keys.down1.isDown || keys.down2.isDown) this.setVelocityY(this.speed);
 		else this.setVelocityY(0);
 
 		if (this.body.velocity.x || this.body.velocity.y) this.particles.on = true;
