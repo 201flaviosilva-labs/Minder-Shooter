@@ -55,24 +55,26 @@ export default class Dock extends Phaser.Scene {
 		const { width, height, middleWidth, middleHeight } = Configs.screen;
 		const textures = Configs.playerTextures;
 
-		for (let i = 0; i < textures.length; i++) {
-			// const x = i * 150 + 100;
-			const x = i * 125 + 50;
-			// const y = i < 7 ? middleHeight - 50 : middleHeight + 50;
-			const y = middleHeight;
-			const t = textures[i];
+		let actualTexture = 0;
+		for (let i = 0; i < 2; i++) {
+			for (let j = 0; j < textures.length / 2; j++) {
+				const x = j * 150 + 300;
+				const y = i == 0 ? middleHeight - 100 : middleHeight + 100;
+				actualTexture++;
+				const t = textures[actualTexture];
 
-			const sprite = this.add.image(x, y, t);
-			sprite.setAngle(90);
-			sprite.setInteractive({ useHandCursor: true, });
-			sprite.on("pointerup", () => {
-				this.Settings.playTexture = t;
-				this.play.setText(t);
+				const sprite = this.add.image(x, y, t);
+				sprite.setAngle(90);
+				sprite.setInteractive({ useHandCursor: true, });
+				sprite.on("pointerup", () => {
+					this.Settings.playTexture = t;
+					this.play.setText(t);
 
-				this.drawGraphics(sprite);
-			});
+					this.drawGraphics(sprite);
+				});
 
-			if (t === this.Settings.playTexture) this.drawGraphics(sprite);
+				if (t === this.Settings.playTexture) this.drawGraphics(sprite);
+			}
 		}
 	}
 
@@ -80,6 +82,7 @@ export default class Dock extends Phaser.Scene {
 		const x = sprite.x - sprite.width / 2;
 		const y = sprite.y + sprite.height / 2 + 20;
 
+		this.graphics.clear();
 		this.graphics.setPosition(x, y);
 		this.graphics.lineBetween(0, 0, sprite.width, 0);
 	}

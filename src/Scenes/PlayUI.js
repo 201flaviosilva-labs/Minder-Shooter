@@ -29,14 +29,14 @@ export default class Home extends Phaser.Scene {
 		this.pauseLabel = this.add.text(middleWidth, middleHeight, this.Settings.output.play.pause, TextStyle.play.pause).setOrigin(0.5).setVisible(false);
 
 		// Keys - Pause and Quit
-		const pauseKey = this.input.keyboard.addKey(Configs.controllers.pause);
-		const exitKey = this.input.keyboard.addKey(Configs.controllers.exit);
+		const pauseKey = this.input.keyboard.addKey(Configs.controllers.pause); // P
+		const exitKey = this.input.keyboard.addKey(Configs.controllers.exit); // Q
 
 		pauseKey.removeAllListeners();
 		exitKey.removeAllListeners();
 
 		pauseKey.on("down", this.pauseGame, this);
-		exitKey.on("down", this.playScene.exitGame, this.playScene);
+		exitKey.on("down", () => this.playScene.exitGame(false), this.playScene);
 
 		// Events
 		this.playScene.events.removeListener("UpdateScore");

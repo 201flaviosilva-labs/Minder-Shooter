@@ -143,7 +143,7 @@ export default class Play extends Phaser.Scene {
 			const name = prompt(this.Settings.output.play.name, "Player");
 			this.Settings.addScore({ name: name, score: this.score, date: getDateFormatted(), });
 
-			this.exitGame();
+			this.exitGame(true);
 		}
 	}
 
@@ -169,8 +169,8 @@ export default class Play extends Phaser.Scene {
 		}
 	}
 
-	exitGame() {
-		this.scene.start("Home");
+	exitGame(itLost = false) {
+		this.scene.start(itLost ? "Leaderboard" : "Home");
 		this.scene.stop("PlayUI");
 		this.scene.stop();
 	}
