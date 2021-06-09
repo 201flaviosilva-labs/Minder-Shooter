@@ -24,7 +24,7 @@ export default class Home extends Phaser.Scene {
 			this.addNewLife();
 		}
 
-		this.labelScore = this.add.text(width - 240, 50, play.score + 0, TextStyle.playUI.score);
+		this.labelScore = this.add.text(width - 300, 50, play.score + 0, TextStyle.playUI.score);
 		this.labelAmmunition = this.add.text(middleWidth, height - 50, play.ammunition + 10, TextStyle.playUI.score).setOrigin(0.5);
 		this.pauseLabel = this.add.text(middleWidth, middleHeight, this.Settings.output.play.pause, TextStyle.play.pause).setOrigin(0.5).setVisible(false);
 
