@@ -1,6 +1,6 @@
 # Minder Shoot
 
-- [Play](https://minder-shoot.netlify.app/);
+- [Play](https://201flaviosilva.github.io/Minder-Shooter/);
 - [Rep](https://github.com/201flaviosilva/Minder-Shooter);
 - [Template](https://github.com/photonstorm/phaser3-project-template);
 
