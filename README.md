@@ -3,6 +3,8 @@
 - [Play](https://201flaviosilva.github.io/Minder-Shooter/);
 - [Rep](https://github.com/201flaviosilva/Minder-Shooter);
 - [Template](https://github.com/photonstorm/phaser3-project-template);
+- [Mindera](https://mindera.com/);
+  - [Mindera Gaming](https://minderagaming.com/);
 
 ## Available Commands
 
