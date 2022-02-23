@@ -9,6 +9,7 @@ var next_shoot_time = 10;
 var current_shoot_time = 0;
 
 func _ready():
+	$Sprite.set_texture(Minders.get_selected());
 	pass
 
 func _process(delta):

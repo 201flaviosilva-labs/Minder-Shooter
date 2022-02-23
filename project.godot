@@ -24,6 +24,10 @@ config/name="Minder Shooter"
 run/main_scene="res://src/Scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Minders="*res://src/Scripts/Minders.gd"
+
 [display]
 
 window/size/width=1280

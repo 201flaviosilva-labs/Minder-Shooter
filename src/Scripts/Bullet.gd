@@ -6,6 +6,7 @@ export (int) var SPEED = 800;
 var direction = Vector2.ZERO;
 
 func _ready():
+	$Sprite.set_texture(Minders.get_selected());
 	pass
 
 func set_direction(new_direction):
