@@ -39,9 +39,27 @@ var WINE_MINDER = preload("res://src/Assets/Sprites/Minders/WineMinder.png");
 
 var selected_texture = MINDER;
 
-func set_texture(i):
-	pass
+var textures = [ALIEN_MINDER, AUTUMN_MINDER, BAR_MINDER, BIGODES]
 
 func get_selected():
-	return selected_texture;
+	return selected_texture
+	pass
+
+func set_texture(texture):
+	selected_texture = texture
+	pass
+
+func set_texture_index(index):
+	selected_texture = get_textures()[index]
+	pass
+
+func get_texture(name):
+	pass
+	
+func get_texture_index(index):
+	return get_textures()[index]
+	pass
+
+func get_textures():
+	return textures
 	pass
