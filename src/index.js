@@ -1,6 +1,6 @@
-import Phaser from "Phaser";
+import Phaser from "phaser";
 
-import "./CSS/Reset.css";
+import "./style.css";
 
 import GlobalConfigs from "./Config/Configs";
 
