@@ -1,0 +1,15 @@
+# Based https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!src
+!index.html
+
+# ...even if they are in subdirectories
+# !*/
+
+# if the files to be tracked are in subdirectories
+# !*/a/b/file1.txt
+# !*/a/b/c/*
