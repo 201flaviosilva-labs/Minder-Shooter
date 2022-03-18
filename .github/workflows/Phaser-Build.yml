@@ -1,0 +1,39 @@
+name: "Phaser Export"
+
+on:
+  push:
+    branches:
+      - "Phaser-3-Arcade-Version"
+  pull_request:
+    branches:
+      - "Phaser-3-Arcade-Version"
+
+jobs:
+  export-web:
+    name: Web Export
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [17.x]
+        
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+          
+      - name: Install and build
+        run: npm install && npm run build
+        
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: web
+          path: build
+          
+#      - name: Deploy to GitHub Pages 🚀
+#        uses: JamesIves/github-pages-deploy-action@releases/v4
+#        with:
+#          branch: gh-pages # The branch the action should deploy to.
+#          folder: build # The folder the action should deploy.
