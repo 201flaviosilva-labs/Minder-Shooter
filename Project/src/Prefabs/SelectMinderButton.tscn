@@ -4,8 +4,8 @@
 [ext_resource path="res://src/Scripts/SelectMinderButton.gd" type="Script" id=2]
 
 [node name="SelectMinderButton" type="TextureButton"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 79.0
+margin_bottom = 64.0
 texture_normal = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {

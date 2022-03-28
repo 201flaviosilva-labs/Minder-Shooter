@@ -21,7 +21,7 @@ anchor_bottom = 1.0
 margin_top = 150.0
 custom_constants/vseparation = 20
 custom_constants/hseparation = 20
-columns = 10
+columns = 9
 __meta__ = {
 "_edit_use_anchors_": false
 }
