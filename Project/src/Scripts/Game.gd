@@ -24,17 +24,7 @@ func _create_new_duke():
 	var new_duke_loc = get_node("Path2D/PathFollow2D")
 	new_duke_loc.offset = randi()
 	
-	var direction = new_duke_loc.rotation + PI / 2;
-	print(new_duke_loc.offset)
-	
 	var new_duke = DUKE.instance()
 	add_child(new_duke)
-	
-	new_duke.position = new_duke_loc.position
-	
-	direction += rand_range(-PI / 4, PI / 4)
-	new_duke.rotation = direction
-	
-	var velocity = Vector2(rand_range(150.0, 250.0), 0.0)
-	new_duke.linear_velocity = velocity.rotated(direction)
+	new_duke.fix_direction(new_duke_loc.rotation + PI / 2, new_duke_loc.position)
 	pass
