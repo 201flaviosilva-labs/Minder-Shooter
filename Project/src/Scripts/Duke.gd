@@ -12,8 +12,6 @@ func _ready():
 	pass # Replace with function body.
 	
 func fix_direction(direction, new_position):
-	print(direction, new_position)
-	
 	position = new_position
 	
 	direction += rand_range(-PI / 4, PI / 4)
@@ -21,7 +19,11 @@ func fix_direction(direction, new_position):
 	
 	var velocity = Vector2(rand_range(MIN_SPEED, MAX_SPEED), 0.0)
 	linear_velocity = velocity.rotated(direction)
-	print(linear_velocity)
+	pass
+	
+func destroy():
+	print("beep")
+	queue_free()
 	pass
 
 func _on_ShootTimer_timeout():
