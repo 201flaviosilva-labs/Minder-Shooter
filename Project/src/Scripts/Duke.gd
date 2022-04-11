@@ -22,7 +22,6 @@ func fix_direction(direction, new_position):
 	pass
 	
 func destroy():
-	print("beep")
 	queue_free()
 	pass
 

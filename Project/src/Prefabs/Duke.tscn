@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 26.5 )
 
-[node name="Duke" type="RigidBody2D"]
+[node name="Duke" type="RigidBody2D" groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 2
 gravity_scale = 0.0

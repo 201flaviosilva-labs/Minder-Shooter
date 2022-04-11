@@ -7,29 +7,35 @@ export (PackedScene) var Bullet
 
 var next_shoot_time = 10
 var current_shoot_time = 0
+var velocity = Vector2.ZERO
 
 func _ready():
 	$Sprite.set_texture(Minders.get_selected())
 	pass
 
 func _process(delta):
-	move(delta)
-	current_shoot_time += 1
-	if Input.is_action_pressed("shoot"): shoot()
-	pass
-	
-func move(delta):
 	look_at(get_global_mouse_position())
-	var velocity = Vector2.ZERO
+	velocity = Vector2.ZERO
 	
+	# Get inputs
 	if Input.is_action_pressed("move_up"): velocity.y -= SPEED
 	elif Input.is_action_pressed("move_down"): velocity.y += SPEED
 	
 	if Input.is_action_pressed("move_left"): velocity.x -= SPEED
 	elif Input.is_action_pressed("move_right"): velocity.x += SPEED
-		
+	
+	current_shoot_time += 1
+	if Input.is_action_pressed("shoot"): shoot()
+	pass
+	
+func _physics_process(delta):
 	velocity = velocity.normalized() * SPEED
-	move_and_collide(velocity * delta)
+	move_and_slide(velocity, Vector2.ZERO, false, 4, 1, false)
+	
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider.is_in_group("Enemy"): collision.collider.call_deferred("destroy")
+		pass
 	pass
 
 func shoot():
