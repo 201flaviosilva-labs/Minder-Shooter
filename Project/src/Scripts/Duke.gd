@@ -31,7 +31,7 @@ func _on_ShootTimer_timeout():
 	
 	var new_shoot = DUKE_SHOOT.instance()
 	# new_shoot.transform = global_transform
-	new_shoot.global_position = global_position
+	new_shoot.global_position = $ShootPos.global_position
 	new_shoot.global_rotation = global_rotation
 	get_tree().root.add_child(new_shoot)
 	pass # Replace with function body.

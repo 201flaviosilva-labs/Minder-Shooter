@@ -8,6 +8,8 @@ extents = Vector2( 26, 15 )
 
 [node name="DukeShoot" type="Area2D" groups=["EnemyBullet"]]
 scale = Vector2( 0.3, 0.3 )
+collision_layer = 7
+collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -20,4 +22,7 @@ shape = SubResource( 1 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 scale = Vector2( 3.33333, 3.33333 )
 
+[connection signal="area_entered" from="." to="." method="_on_DukeShoot_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_DukeShoot_body_entered"]
+[connection signal="body_shape_entered" from="." to="." method="_on_DukeShoot_body_shape_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

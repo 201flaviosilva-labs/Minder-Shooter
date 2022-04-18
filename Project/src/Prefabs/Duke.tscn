@@ -31,5 +31,8 @@ scale = Vector2( 3.2, 3.3 )
 [node name="ShootTimer" type="Timer" parent="."]
 autostart = true
 
+[node name="ShootPos" type="Position2D" parent="."]
+position = Vector2( 37, 0 )
+
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

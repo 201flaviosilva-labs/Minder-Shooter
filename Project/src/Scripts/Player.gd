@@ -34,7 +34,9 @@ func _physics_process(delta):
 	
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.is_in_group("Enemy"): collision.collider.call_deferred("destroy")
+		if collision.collider.is_in_group("Enemy"): 
+			collision.collider.call_deferred("destroy")
+			hitted()
 		pass
 	pass
 
@@ -48,3 +50,9 @@ func shoot():
 	var direction = ($ShootDirectionPos.global_position - start_position).normalized()
 	emit_signal("fired", new_bullet, start_position, direction)
 	pass
+	
+func hitted():
+	print("Hitted")
+	pass
+	
+
