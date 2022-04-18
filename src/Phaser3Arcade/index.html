@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="" rel="icon" type="image/x-icon" id="favicon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Press Start 2P" rel="stylesheet">
+	<title>Minder Shooter</title>
+
+	<style>
+		#loader {
+			width: 60px;
+			height: 60px;
+			position: fixed;
+			bottom: 10px;
+			right: 10px;
+			border: 10px solid #ff0000;
+			border-top: 10px solid #dddd00;
+			border-bottom: 10px solid #dddd00;
+			border-radius: 50%;
+			z-index: 10;
+			color: #000;
+			animation: spin 2s linear infinite;
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="loader">.</div>
+	<div id="GameContainer"></div>
+
+	<script>
+		window.onload = () => {
+			const loader = document.getElementById("loader");
+			loader.style.top = -1000;
+			loader.style.left = -1000;
+			loader.style.zIndex = -1000;
+			loader.remove();
+		};
+	</script>
+<script type="text/javascript" src="bundle.min.js"></script></body>
+
+</html>

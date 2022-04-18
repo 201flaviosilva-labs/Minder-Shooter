@@ -1,10 +1,14 @@
-# Based https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
+# Based: https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
 # Ignore everything
 *
 
 # But not these files...
 !.gitignore
 !src
+!/src/Godot3/
+!/src/Godot3/*
+!/src/Phaser3Arcade/
+!/src/Phaser3Arcade/*
 !index.html
 
 # ...even if they are in subdirectories
