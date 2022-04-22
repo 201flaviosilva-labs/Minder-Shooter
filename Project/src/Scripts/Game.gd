@@ -8,6 +8,7 @@ onready var Player = $Player;
 func _ready():
 	randomize()
 	Player.connect("fired", self, "_fired");
+	GameManager.reset()
 	pass
 
 func _fired(new_bullet: Bullet, start_position, direction):

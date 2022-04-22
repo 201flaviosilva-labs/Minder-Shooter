@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Minders="*res://src/Scripts/Minders.gd"
+GameManager="*res://src/Scripts/GameManager.gd"
 
 [display]
 
