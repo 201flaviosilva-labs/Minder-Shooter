@@ -1,0 +1,22 @@
+{
+  "name": "minder-shooter",
+  "version": "2.0.0",
+  "description": "Top Down Shooter Game Mindera",
+  "homepage": "https://201flaviosilva.github.io/Minder-Shooter/",
+  "author": "201flaviosilva",
+  "license": "MIT",
+  "dependencies": {
+    "np": "^7.6.1"
+  },
+  "scripts": {
+    "bump": "np --any-branch --no-tests --no-publish --no-yarn"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/201flaviosilva/Minder-Shooter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/201flaviosilva/Minder-Shooter/issues"
+  }
+}
