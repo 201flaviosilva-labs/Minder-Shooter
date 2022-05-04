@@ -15,5 +15,7 @@ func _on_ResumeBTN_pressed():
 	pass # Replace with function body.
 
 func _on_ExitBTN_pressed():
+	is_paused = false
+	get_tree().paused = is_paused
 	get_tree().change_scene("res://src/Scenes/Main.tscn")
 	pass # Replace with function body.

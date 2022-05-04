@@ -26,7 +26,9 @@ func destroy():
 	pass
 
 func _on_Bullet_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	if body.is_in_group("Enemy"): body.call_deferred("destroy")
+	if body.is_in_group("Enemy"): 
+		GameManager.add_score()
+		body.call_deferred("destroy")
 	queue_free()
 	pass # Replace with function body.
 

@@ -53,4 +53,5 @@ func shoot():
 	
 func hitted():
 	GameManager.remove_player_life()
+	GameManager.remove_score()
 	pass

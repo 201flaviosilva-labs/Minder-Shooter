@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Prefabs/Pause.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Scripts/GameUI.gd" type="Script" id=2]
@@ -11,6 +11,10 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 30
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
 font_data = ExtResource( 3 )
 
 [node name="UI" type="CanvasLayer"]
@@ -58,6 +62,20 @@ text = "Exit"
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 323.0
 margin_bottom = 64.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -293.0
+margin_right = -14.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 3 )
+text = "Score: 0"
+align = 2
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
