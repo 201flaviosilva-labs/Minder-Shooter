@@ -1,9 +1,7 @@
 extends TextureButton
 
-
 func _ready():
 	pass
-
 
 func _on_SelectMinderButton_pressed():
 	Minders.set_texture(texture_normal)
