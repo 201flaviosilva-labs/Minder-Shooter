@@ -52,7 +52,7 @@ func set_player_ammo(new_ammo: int):
 	emit_signal("player_ammo_changed", player_ammo)
 	pass
 
-func add_player_ammo(add_ammo: int):
+func add_player_ammo(add_ammo: int = 1):
 	set_player_ammo(player_ammo + add_ammo)
 	pass
 	
