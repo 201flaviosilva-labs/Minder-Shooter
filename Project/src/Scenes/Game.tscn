@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://src/Prefabs/Background.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Prefabs/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Scripts/Game.gd" type="Script" id=3]
+[ext_resource path="res://src/Scenes/GameUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Prefabs/Duke.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/Assets/Sprites/Minders/Minder.png" type="Texture" id=6]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Sprite
+
+
+func _ready():
+	pass
+"
+
+[sub_resource type="PackedScene" id=4]
+_bundled = {
+"conn_count": 0,
+"conns": PoolIntArray(  ),
+"editable_instances": [  ],
+"names": PoolStringArray( "PlayerAmmo", "rotation", "texture", "script", "Sprite" ),
+"node_count": 1,
+"node_paths": [  ],
+"nodes": PoolIntArray( -1, -1, 4, 0, -1, 3, 1, 0, 2, 1, 3, 2, 0 ),
+"variants": [ 1.5708, ExtResource( 6 ), SubResource( 3 ) ],
+"version": 2
+}
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 30, 13, 0, 0, 0, 0, 1280.68, 13.9807, 0, 0, 0, 0, 1278.73, 716.167, 0, 0, 0, 0, 30.9748, 714.206, 0, 0, 0, 0, 30, 13 )
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="Game" type="Node"]
+script = ExtResource( 3 )
+DUKE = ExtResource( 5 )
+AMMO = SubResource( 4 )
+
+[node name="Background" parent="." instance=ExtResource( 1 )]
+
+[node name="UI" parent="." instance=ExtResource( 4 )]
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 640, 360 )
+
+[node name="BulletsContainer" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( -30.7752, -12.2557 )
+scale = Vector2( 1.02584, 1.01967 )
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 30, 13 )
+rotation = 0.000783825
+
+[node name="DukeGeneratorTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="NewAmmoTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="Top" type="StaticBody2D" parent="Walls"]
+position = Vector2( 640, 0 )
+scale = Vector2( 65, 0.5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Top"]
+shape = SubResource( 2 )
+
+[node name="Bottom" type="StaticBody2D" parent="Walls"]
+position = Vector2( 640, 720 )
+scale = Vector2( 65, 0.5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Bottom"]
+shape = SubResource( 2 )
+
+[node name="Left" type="StaticBody2D" parent="Walls"]
+position = Vector2( 0, 360 )
+scale = Vector2( 0.5, 35 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left"]
+shape = SubResource( 2 )
+
+[node name="Right" type="StaticBody2D" parent="Walls"]
+position = Vector2( 1280, 360 )
+scale = Vector2( 0.5, 35 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right"]
+shape = SubResource( 2 )
+
+[connection signal="timeout" from="DukeGeneratorTimer" to="." method="_on_DukeGeneratorTimer_timeout"]
+[connection signal="timeout" from="NewAmmoTimer" to="." method="_on_NewAmmoTimer_timeout"]
