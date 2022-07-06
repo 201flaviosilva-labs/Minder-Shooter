@@ -1,6 +1,7 @@
 extends Node
 
 export(PackedScene) var DUKE: PackedScene;
+export(PackedScene) var AMMO: PackedScene;
 
 onready var BulletsContainer = $BulletsContainer;
 onready var Player = $Player;
@@ -28,4 +29,9 @@ func _create_new_duke():
 	var new_duke = DUKE.instance()
 	add_child(new_duke)
 	new_duke.fix_direction(new_duke_loc.rotation + PI / 2, new_duke_loc.position)
+	pass
+
+
+func _on_NewAmmoTimer_timeout():
+	GameManager.add_player_ammo()
 	pass

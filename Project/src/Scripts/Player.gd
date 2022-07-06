@@ -13,7 +13,7 @@ func _ready():
 	$Sprite.set_texture(Minders.get_selected())
 	pass
 
-func _process(delta):
+func _process(delta: float):
 	look_at(get_global_mouse_position())
 	velocity = Vector2.ZERO
 	
@@ -42,6 +42,8 @@ func _physics_process(delta):
 
 func shoot():
 	if(next_shoot_time > current_shoot_time): return
+	if(GameManager.player_ammo <= 0): return
+		
 	current_shoot_time = 0
 	
 	var new_bullet = Bullet.instance()
@@ -49,6 +51,7 @@ func shoot():
 	var start_position = $ShootPos.global_position
 	var direction = ($ShootDirectionPos.global_position - start_position).normalized()
 	emit_signal("fired", new_bullet, start_position, direction)
+	GameManager.remove_player_ammo()
 	pass
 	
 func hitted():
