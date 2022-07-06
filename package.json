@@ -5,9 +5,6 @@
   "homepage": "https://201flaviosilva.github.io/Minder-Shooter/",
   "author": "201flaviosilva",
   "license": "MIT",
-  "dependencies": {
-    "np": "^7.6.1"
-  },
   "scripts": {
     "bump": "np --any-branch --no-tests --no-publish --no-yarn"
   },
@@ -18,5 +15,8 @@
   },
   "bugs": {
     "url": "https://github.com/201flaviosilva/Minder-Shooter/issues"
+  },
+  "devDependencies": {
+    "np": "^7.6.2"
   }
 }
